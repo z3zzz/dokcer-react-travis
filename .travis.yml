@@ -9,3 +9,16 @@ script:
   - docker run -e CI=true kwangduck/docker-react-travis npm run test
 
 language: generic
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-2"
+  app: "docker-react-travis"
+  env: "Dockerreacttravis-env"
+  bucket_name: "elasticbeanstalk-ap-northeast-2-804508095163"
+  bucket_path: "react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
